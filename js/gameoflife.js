@@ -1,4 +1,10 @@
-function seed() {}
+function seed(arguement) {
+  const arr = [];
+  for (let i = 0; i < arguement.length; i++) {
+    arr.push(arguement);
+  }
+  return arr;
+}
 
 function same([x, y], [j, k]) {}
 
