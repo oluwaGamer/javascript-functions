@@ -6,7 +6,13 @@ function seed(arguement) {
   return arr;
 }
 
-function same([x, y], [j, k]) {}
+function same([x, y], [j, k]) {
+  if ([x,y] === [j,k]){
+    return true;
+  } else {
+    return false;
+  }
+}
 
 // The game state to search for `cell` is passed as the `this` value of the function.
 function contains(cell) {}
