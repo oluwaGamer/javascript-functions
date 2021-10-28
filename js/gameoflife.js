@@ -7,7 +7,7 @@ function seed(arguement) {
 }
 
 function same([x, y], [j, k]) {
-  if ([x,y] == [j,k]){
+  if (x == j && y == k){
     return true;
   } else {
     return false;
