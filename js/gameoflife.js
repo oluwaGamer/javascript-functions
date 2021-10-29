@@ -62,13 +62,38 @@ const getLivingNeighbors = (cell, state) => {
   return getNeighborsOf(cell).filter((n) => contains.bind(state)(n));
 };
 
-const willBeAlive = (cell, state) => {};
+const willBeAlive = (cell, state) => {
+  const livingNeigbors = getLivingNeighbors(cell, state);
 
-const calculateNext = (state) => {};
+  return(
+    livingNeigbors.length === 3 ||
+    (contains.call(state, cell) && livingNeigbors.length === 2)
+  );
+};
 
-const iterate = (state, iterations) => {};
+const calculateNext = (state) => {
+  const { bottomLeft, topRight } = corners(state);
+  let result = [];
+  for (let y = topRight[1] + 1; y >= bottomLeft[1] - 1; y--) {
+    for (let x = bottomLeft[0] - 1; x <= topRight[0] + 1; x++) {
+      result = result.concat(willBeAlive([x,y], state) ? [[x, y]] : []);
+    }
+  }
+  return result;
+};
 
-const main = (pattern, iterations) => {};
+const iterate = (state, iterations) => {
+  const states = [state];
+  for (let i = 0; i < iterations; i++) {
+    states.push(calculateNext(states[states.length - 1]))
+  }
+  return states;
+};
+
+const main = (pattern, iterations) => {
+  const results = iterate(startPatterns[pattern], iterations);
+  results.forEach(r => console.log(printCells(r)));
+};
 
 const startPatterns = {
     rpentomino: [
