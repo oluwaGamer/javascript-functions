@@ -80,7 +80,7 @@ function calculateNext(state) {
     }
   }
   return result;
-} 
+};
 
 const iterate = (state, iterations) => {
   const states = [state];
